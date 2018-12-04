@@ -75,6 +75,6 @@ def delete_task(task_id):
     tasks.remove(task[0])
     return jsonify({'result': True})
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+#@app.route('/')
+#def hello_world():
+#    return 'Hello World!'
