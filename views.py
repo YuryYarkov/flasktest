@@ -93,7 +93,7 @@ def update_task(task_id):
     task[0]['title'] = request.json.get('title', task[0]['title'])
     task[0]['description'] = request.json.get('description', task[0]['description'])
     task[0]['done'] = request.json.get('done', task[0]['done'])
-    task[0]['uri'] = url_for('get_task', task_id, _external=True)
+    task[0]['uri'] = url_for('get_task', task_id = task_id, _external=True)
     return jsonify({'task': task[0]})
 
 @app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['DELETE'])
