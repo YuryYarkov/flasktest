@@ -69,7 +69,8 @@ def create_task():
         'id': tasks[-1]['id'] + 1,
         'title': request.json['title'],
         'description': request.json.get('description', ""),
-        'done': False
+        'done': False,
+        'uri' : url_for('get_task', task_id=tasks[-1]['id'] + 1, _external=True)
     }
     tasks.append(task)
     return jsonify({'task': task}), 201
