@@ -24,6 +24,9 @@
         <!-- ko foreach: tasks -->
         <tr>
             <td>
+                <p><b data-bind="text: uri"></b></p>
+            </td>
+            <td>
                 <span data-bind="visible: done" class="label label-success">Done</span>
                 <span data-bind="visible: !done()" class="label label-important">In Progress</span>
             </td>
@@ -144,12 +147,6 @@
             $('#edit').modal('show');
         }
 
-        self.edit = function(task, data) {
-            self.ajax(task.uri(), 'PUT', data).done(function(res) {
-                self.updateTask(task, res.task);
-            });
-        }
-
         self.updateTask = function(task, newTask) {
             var i = self.tasks.indexOf(task);
             self.tasks()[i].uri(newTask.uri);
@@ -158,14 +155,24 @@
             self.tasks()[i].done(newTask.done);
         }
 
+        self.edit = function(task, data)
+        {
+            self.ajax(task.uri(), 'PUT', data).done(
+                function(res)
+                {
+                    self.updateTask(task, res.task);
+                }
+             );
+        }
+
         self.remove = function (task) {
             self.ajax(task.uri(), 'DELETE').done(function() {
                 self.tasks.remove(task);
             });
         }
          self.markInProgress = function(task) {
-            self.ajax(task.uri(), 'PUT', { done: false }).done(function(res) {
-                self.updateTask(task, res.task);
+            self.ajax(task.uri(), 'PUT', { done: false }).done(function(data) {
+                self.updateTask(task, data.task);
             });
         }
         self.markDone = function(task) {
@@ -222,6 +229,7 @@
         self.title = ko.observable();
         self.description = ko.observable();
         self.done = ko.observable();
+        //self.uri = ko.observable();
 
         self.setTask = function(task) {
             self.task = task;
@@ -241,10 +249,15 @@
     }
 
     //$().ready(function() {
-    var tasksViewModel = new TasksViewModel();
-    var addTaskViewModel = new AddTaskViewModel();
-    ko.applyBindings(tasksViewModel, $('#main')[0]);
-    ko.applyBindings(addTaskViewModel, $('#add')[0]);
+        var tasksViewModel = new TasksViewModel();
+        var addTaskViewModel = new AddTaskViewModel();
+        var editTaskViewModel = new EditTaskViewModel();
+        //var loginViewModel = new LoginViewModel();
+        ko.applyBindings(tasksViewModel, $('#main')[0]);
+        ko.applyBindings(addTaskViewModel, $('#add')[0]);
+        ko.applyBindings(editTaskViewModel, $('#edit')[0]);
+//        ko.applyBindings(loginViewModel, $('#login')[0]);
+
     //});
 </script>
 </body>
