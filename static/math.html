@@ -46,32 +46,34 @@
         </div>
 
         <div class="row">
-        <form class="need_validation">
+        <form class="need_validation" action="#">
             <div class="row">
-                <div class="col-sm-2">
-                    <h2><p class="inner" id = "add_1">23</p>
-                    <input class="form-control" id="add_1_in" placeholder required type="text"  autocomplete ="off" style="background-color: #A5D6D9"></h2>
+                <div class="col-sm-3">
+                    <p class="inner" id = "add_1">23</p>
+                    <input class="form-control" id="add_1_in" placeholder  type="number" min="0"  autocomplete ="off" style="background-color: #A5D6D9">
                 </div>
                 <div class="col-sm">
-                    <h2><p class="inner">+</p></h2>
+                    <p class="inner">+</p>
                 </div>
-                <div class="col-sm-2">
-                    <h2><p class="inner" id = "add_2">64</p>
-                    <input class="form-control" id="add_2_in" placeholder required type="text"  autocomplete ="off" style="background-color: #A5D6D9"></h2>
+                <div class="col-sm-3">
+                    <p class="inner" id = "add_2">64</p>
+                    <input class="form-control" id="add_2_in" placeholder  type="number" min="0"  autocomplete ="off" style="background-color: #A5D6D9">
                 </div>
                 <div class="col-sm">
-                    <h2><p class="inner">=</p></h2>
+                    <p class="inner">=</p>
                 </div>
-                <div class="col-sm-2">
-                    <h2><p class="inner" id = "summ_1">23</p></h2>
-                    <h2><input class="form-control" id="Summ" placeholder required type="text" autocomplete ="off" style="background-color: #A5D6D9"></h2>
+                <div class="col-sm-3">
+                    <p class="inner" id = "summ_1">23</p>
+                    <input class="form-control" id="Summ" placeholder  type="number" min="0" autocomplete ="off" style="background-color: #A5D6D9">
                     <div class="invalid-feedback">
                         Укажите сумму
                     </div>
                 </div>
             </div>
             <div class="row">
-                <h2></h2><p class="highlight" id = "summ_result"></p></h2>
+                <div class="col-sm-8">
+                <p class="highlight" id = "summ_result_note"></p>
+                </div>
             </div>
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" onclick="summ_check();">Проверить</button>
@@ -107,8 +109,11 @@
             self.Summ.style.display = "none";
 
             self.add_1.innerText = "";
+            self.add_1_in.value = "";
             self.add_2.innerText = s2;
             self.summ_1.innerText = summ_result;
+
+            self.add_1_in.focus();
         }
         else if (summ_variant == 2)
         {
@@ -121,7 +126,10 @@
 
             self.add_1.innerText = s1;
             self.add_2.innerText = "";
+            self.add_2_in.value = "";
             self.summ_1.innerText = summ_result;
+
+            self.add_2_in.focus();
         }
         else
         {
@@ -135,6 +143,9 @@
             self.add_1.innerText = s1;
             self.add_2.innerText = s2;
             self.summ_1.innerText = "";
+            self.Summ.value = "";
+
+            self.Summ.focus();
         }
 
     }
@@ -164,12 +175,12 @@
 
         if ((as1 + as2) == aresult)
         {
-            self.summ_result.innerText = "ВЕРНО!"
+            self.summ_result_note.innerText = "ВЕРНО!"
             init_forms();
         }
         else
         {
-            self.summ_result.innerText = "ОШИБКА! Попробуй ещё"
+            self.summ_result_note.innerText = "ОШИБКА! Попробуй ещё"
         }
 
     }
