@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:onload="http://www.w3.org/1999/xhtml">
+<html xmlns:onload="http://www.w3.org/1999/xhtml" lang="ru">
 <head>
     <title>Математика</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,26 +39,31 @@
 <div class="container">
 
         <div class="py-5 text-center">
+            <div class="col-sm-4">
             <h2>Решите задачу</h2>
             <p class="lead">Задайте недостающее значение</p>
+                </div>
         </div>
 
         <div class="row">
         <form class="need_validation">
             <div class="row">
-                <div class="col-sm">
-                    <h2><p class="inner" id = "add_1">23</p></h2>
+                <div class="col-sm-2">
+                    <h2><p class="inner" id = "add_1">23</p>
+                    <input class="form-control" id="add_1_in" placeholder required type="text"  autocomplete ="off" style="background-color: #A5D6D9"></h2>
                 </div>
                 <div class="col-sm">
                     <h2><p class="inner">+</p></h2>
                 </div>
-                <div class="col-sm">
-                    <h2><p class="inner" id = "add_2">64</p></h2>
+                <div class="col-sm-2">
+                    <h2><p class="inner" id = "add_2">64</p>
+                    <input class="form-control" id="add_2_in" placeholder required type="text"  autocomplete ="off" style="background-color: #A5D6D9"></h2>
                 </div>
                 <div class="col-sm">
                     <h2><p class="inner">=</p></h2>
                 </div>
-                <div class="col-sm">
+                <div class="col-sm-2">
+                    <h2><p class="inner" id = "summ_1">23</p></h2>
                     <h2><input class="form-control" id="Summ" placeholder required type="text" autocomplete ="off" style="background-color: #A5D6D9"></h2>
                     <div class="invalid-feedback">
                         Укажите сумму
@@ -66,7 +71,7 @@
                 </div>
             </div>
             <div class="row">
-                <h2></h2><p class="highlight" id = "summ_result"></p><h2>
+                <h2></h2><p class="highlight" id = "summ_result"></p></h2>
             </div>
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" onclick="summ_check();">Проверить</button>
@@ -75,6 +80,10 @@
 </div>
 
 <script type="text/javascript">
+
+    var s1,s2,summ_result;
+    let summ_variant = 3;
+
     function getRandomInt(min, max)
     {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -83,23 +92,77 @@
 
     function init_forms()
     {
-        var s1,s2;
         s1 = getRandomInt(1,90);
         s2 = getRandomInt(1,100-s1);
+        summ_result = s1 + s2;
+        summ_variant = getRandomInt(1,3);
 
-        self.add_1.innerText = s1;
-        self.add_2.innerText = s2;
+        if (summ_variant == 1)
+        {
+            self.add_1.style.display = "none";
+            self.add_1_in.style.display = "";
+            self.add_2.style.display = "";
+            self.add_2_in.style.display = "none";
+            self.summ_1.style.display = "";
+            self.Summ.style.display = "none";
 
-        self.Summ.value = "";
+            self.add_1.innerText = "";
+            self.add_2.innerText = s2;
+            self.summ_1.innerText = summ_result;
+        }
+        else if (summ_variant == 2)
+        {
+            self.add_1.style.display = "";
+            self.add_1_in.style.display = "none";
+            self.add_2.style.display = "none";
+            self.add_2_in.style.display = "";
+            self.summ_1.style.display = "";
+            self.Summ.style.display = "none";
+
+            self.add_1.innerText = s1;
+            self.add_2.innerText = "";
+            self.summ_1.innerText = summ_result;
+        }
+        else
+        {
+            self.add_1.style.display = "";
+            self.add_1_in.style.display = "none";
+            self.add_2.style.display = "";
+            self.add_2_in.style.display = "none";
+            self.summ_1.style.display = "none";
+            self.Summ.style.display = "";
+
+            self.add_1.innerText = s1;
+            self.add_2.innerText = s2;
+            self.summ_1.innerText = "";
+        }
+
     }
 
     function summ_check()
     {
-        var s1 = Number.parseInt(self.add_1.innerText);
-        var s2 = Number.parseInt(self.add_2.innerText);
-        var result = Number.parseInt(self.Summ.value);
+        var as1,as2,aresult;
 
-        if ((s1 + s2) == result)
+        if (summ_variant == 1)
+        {
+            as1 = Number.parseInt(self.add_1_in.value);
+            as2 = Number.parseInt(self.add_2.innerText);
+            aresult = Number.parseInt(self.summ_1.innerText);
+        }
+        else if (summ_variant == 2)
+        {
+            as1 = Number.parseInt(self.add_1.innerText);
+            as2 = Number.parseInt(self.add_2_in.value);
+            aresult = Number.parseInt(self.summ_1.innerText);
+        }
+        else
+        {
+            as1 = Number.parseInt(self.add_1.innerText);
+            as2 = Number.parseInt(self.add_2.innerText);
+            aresult = Number.parseInt(self.Summ.value);
+        }
+
+        if ((as1 + as2) == aresult)
         {
             self.summ_result.innerText = "ВЕРНО!"
             init_forms();
