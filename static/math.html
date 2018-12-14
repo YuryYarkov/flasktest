@@ -36,13 +36,14 @@
       </nav>
     </header>
 
-<div class="container">
+<div class="container" id="summ_form">
 
         <div class="py-5 text-center">
             <div class="col-sm-4">
-            <h2>Решите задачу</h2>
-            <p class="lead">Задайте недостающее значение</p>
-                </div>
+                <p class="lead">Введи недостающее значение</p>
+                <p class="inner" id ="result_topic">Верных ответов: 0 из 0</p>
+            </div>
+
         </div>
 
         <div class="row">
@@ -85,15 +86,23 @@
 
     var s1,s2,summ_result;
     let summ_variant = 3;
+    let summ_exarcise =0;
+    let summ_correct = 0;
 
     function getRandomInt(min, max)
     {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    function show_result()
+    {
+        self.result_topic.innerText = "Верных ответов: " + summ_correct + " из " + summ_exarcise;
+    }
 
     function init_forms()
     {
+        show_result();
+
         s1 = getRandomInt(1,90);
         s2 = getRandomInt(1,100-s1);
         summ_result = s1 + s2;
@@ -154,33 +163,34 @@
     {
         var as1,as2,aresult;
 
-        if (summ_variant == 1)
-        {
+        if (summ_variant !== 1) {
+            if (summ_variant === 2) {
+                as1 = Number.parseInt(self.add_1.innerText);
+                as2 = Number.parseInt(self.add_2_in.value);
+                aresult = Number.parseInt(self.summ_1.innerText);
+            } else {
+                as1 = Number.parseInt(self.add_1.innerText);
+                as2 = Number.parseInt(self.add_2.innerText);
+                aresult = Number.parseInt(self.Summ.value);
+            }
+        } else {
             as1 = Number.parseInt(self.add_1_in.value);
             as2 = Number.parseInt(self.add_2.innerText);
             aresult = Number.parseInt(self.summ_1.innerText);
         }
-        else if (summ_variant == 2)
-        {
-            as1 = Number.parseInt(self.add_1.innerText);
-            as2 = Number.parseInt(self.add_2_in.value);
-            aresult = Number.parseInt(self.summ_1.innerText);
-        }
-        else
-        {
-            as1 = Number.parseInt(self.add_1.innerText);
-            as2 = Number.parseInt(self.add_2.innerText);
-            aresult = Number.parseInt(self.Summ.value);
-        }
 
-        if ((as1 + as2) == aresult)
+        summ_exarcise++;
+
+        if ((as1 + as2) === aresult)
         {
             self.summ_result_note.innerText = "ВЕРНО!"
+            summ_correct++;
             init_forms();
         }
         else
         {
             self.summ_result_note.innerText = "ОШИБКА! Попробуй ещё"
+            show_result();
         }
 
     }
