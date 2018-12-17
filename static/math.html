@@ -84,7 +84,27 @@
     </div>
 </div>
 
+    <div class="container" id = "game_setup">
+        <div class="py-5 text-center">
+            <h2>Настройка параметров игры</h2>
+        </div>
 
+        <div class="row">
+            <form class="need_validation" action="#">
+                <h3>Тип игры</h3>
+                <div class="d-block choose_game_type">
+                    <div class="custom-control custom-radio">
+                        <input id="summ" name="game_type" type="radio" class="custom-control-input" checked="" required="">
+                        <label class="custom-control-label" for="summ">Суммирование</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="diff" name="game_type" type="radio" class="custom-control-input" required="">
+                        <label class="custom-control-label" for="diff">Вычитание</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
 <script type="text/javascript">
 
