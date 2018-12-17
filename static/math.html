@@ -95,6 +95,8 @@
 
     let active_game = 1;
 
+    let games_level = 2;
+
     function getRandomInt(min, max)
     {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -139,14 +141,41 @@
 
         if (active_game === 1)
         {
-            p1 = getRandomInt(1,90);
-            p2 = getRandomInt(1,100-p1);
+            if (games_level === 1)
+            {
+                p1 = getRandomInt(1,50);
+                p2 = getRandomInt(1,50-p1);
+            }
+            else if (games_level == 2)
+            {
+                p1 = getRandomInt(1,90);
+                p2 = getRandomInt(1,100-p1);
+            }
+            else if (games_level === 3)
+            {
+                p1 = getRandomInt(1,900);
+                p2 = getRandomInt(1,1000-p1);
+            }
             p3 = p1 + p2;
         }
         else if (active_game === 2)
         {
-            p1 = getRandomInt(10,99);
-            p2 = getRandomInt(1,p1 - 1);
+            if (games_level === 1)
+            {
+                p1 = getRandomInt(10,50);
+                p2 = getRandomInt(1,p1-1);
+            }
+            else if (games_level == 2)
+            {
+                p1 = getRandomInt(10,99);
+                p2 = getRandomInt(1,p1-1);
+            }
+            else if (games_level === 3)
+            {
+                p1 = getRandomInt(100,999);
+                p2 = getRandomInt(99,p1-1);
+            }
+
             p3 = p1 - p2;
         }
 
