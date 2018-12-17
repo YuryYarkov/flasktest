@@ -139,12 +139,12 @@
 
 <script type="text/javascript">
 
-    var s1,s2,summ_result;
+    let s1, s2, summ_result;
     let summ_variant = 3;
     let summ_exarcise =0;
     let summ_correct = 0;
 
-    var d1,d2,diff_result;
+    let d1, d2, diff_result;
     let diff_variant = 3;
     let diff_exarcise =0;
     let diff_correct = 0;
@@ -159,7 +159,7 @@
     function show_summ_result() {
         self.summ_result_topic.innerText = "Верных ответов: " + summ_correct + " из " + summ_exarcise;
 
-        var stars = 1;
+        let stars = 1;
 
         if (summ_exarcise !== 0)
         {
@@ -235,7 +235,7 @@
 
     function summ_check()
     {
-        var as1,as2,aresult;
+        let as1, as2, aresult;
 
         if (summ_variant !== 1) {
             if (summ_variant === 2) {
@@ -257,13 +257,13 @@
 
         if ((as1 + as2) === aresult)
         {
-            self.summ_result_note.innerText = "ВЕРНО!"
+            self.summ_result_note.innerText = "ВЕРНО!";
             summ_correct++;
             init_summ_forms();
         }
         else
         {
-            self.summ_result_note.innerText = "ОШИБКА! Попробуй ещё"
+            self.summ_result_note.innerText = "ОШИБКА! Попробуй ещё";
             show_summ_result();
         }
 
@@ -272,7 +272,7 @@
     function show_diff_result() {
         self.diff_result_topic.innerText = "Верных ответов: " + diff_correct + " из " + diff_exarcise;
 
-        var stars = 1;
+        let stars = 1;
 
         if (diff_exarcise !== 0)
         {
@@ -349,7 +349,7 @@
 
     function diff_check()
     {
-        var ad1,ad2,dresult;
+        let ad1, ad2, dresult;
 
         if (diff_variant !== 1) {
             if (diff_variant === 2) {
@@ -371,13 +371,13 @@
 
         if ((ad1 - ad2) === dresult)
         {
-            self.diff_result_note.innerText = "ВЕРНО!"
+            self.diff_result_note.innerText = "ВЕРНО!";
             diff_correct++;
             init_diff_forms();
         }
         else
         {
-            self.diff_result_note.innerText = "ОШИБКА! Попробуй ещё"
+            self.diff_result_note.innerText = "ОШИБКА! Попробуй ещё";
             show_diff_result();
         }
 
