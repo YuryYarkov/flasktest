@@ -13,7 +13,7 @@
 </head>
 
 
-<body onload="init_game_form();">
+<body>
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
     <a class="navbar-brand" href="#">Математика</a>
@@ -55,83 +55,83 @@
                 </div>
             </div>
 
-            <div class="row">
-                <form class="need_validation" action="#">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="inner" id="par_1">23</p>
-                            <input class="form-control" id="par_1_in" placeholder type="number" min="0"
-                                   autocomplete="off"
-                                   style="background-color: #A5D6D9">
-                        </div>
-                        <div class="col-sm">
-                            <p class="inner" id="operation_char">+</p>
-                        </div>
-                        <div class="col-sm-3">
-                            <p class="inner" id="par_2">64</p>
-                            <input class="form-control" id="par_2_in" placeholder type="number" min="0"
-                                   autocomplete="off"
-                                   style="background-color: #A5D6D9">
-                        </div>
-                        <div class="col-sm">
-                            <p class="inner">=</p>
-                        </div>
-                        <div class="col-sm-3">
-                            <p class="inner" id="par_3">23</p>
-                            <input class="form-control" id="par_3_in" placeholder type="number" min="0"
-                                   autocomplete="off"
-                                   style="background-color: #A5D6D9">
-                        </div>
+                <div class="row justify-content-left">
+                    <div class="col-2">
+                        <p class="inner" id="par_1">23</p>
+                        <input class="form-control" id="par_1_in" placeholder type="number" min="0"
+                               autocomplete="off"
+                               style="background-color: #A5D6D9"
+                        onkeypress=" if (event.charCode === 13) game_check();">
                     </div>
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <p class="highlight" id="result_note"></p>
-                        </div>
+                    <div class="col">
+                        <p class="inner" id="operation_char">+</p>
                     </div>
-                    <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" onclick="game_check();">Проверить</button>
-                </form>
-            </div>
-        </div>
-
-    <div class="container" id="game_setup" style="background-color: gainsboro;">
-            <h3 class="text-center">Настройка параметров игры</h3>
-
-            <form class="need_validation" action="#">
-                <div class="row">
-                    <div class="col-md mb-3">
-                        <label>Тип игры</label>
-
-                        <div class="d-block choose_game_type">
-                            <div class="custom-control custom-radio">
-                                <input id="summ" name="game_type" type="radio" class="custom-control-input" checked=""
-                                       required="">
-                                <label class="custom-control-label" for="summ">Суммирование</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="diff" name="game_type" type="radio" class="custom-control-input" required="">
-                                <label class="custom-control-label" for="diff">Вычитание</label>
-                            </div>
-                        </div>
+                    <div class="col-2">
+                        <p class="inner" id="par_2">64</p>
+                        <input class="form-control" id="par_2_in" placeholder type="number" min="0"
+                               autocomplete="off"
+                               style="background-color: #A5D6D9"
+                                onkeypress=" if (event.charCode === 13) game_check();">
                     </div>
-                    <div class="col-md mb-3">
-                        <label>Сложность игры</label>
-                        <select class="custom-select d-block w-100" id="game_level_select">
-                            <option value="1">1 класс</option>
-                            <option value="2">2 класс</option>
-                            <option value="3">3 класс</option>
-                        </select>
+                    <div class="col">
+                        <p class="inner">=</p>
                     </div>
-                    <div class="col-md mb-3">
-                        <label>Примеров</label>
-                        <select class="custom-select d-block w-100" id="try_quantity">
-                            <option value="1">10</option>
-                            <option value="2">20</option>
-                            <option value="3">30</option>
-                        </select>
+                    <div class="col-3">
+                        <p class="inner" id="par_3">23</p>
+                        <input class="form-control" id="par_3_in" placeholder type="number" min="0"
+                               autocomplete="off"
+                               style="background-color: #A5D6D9"
+                                onkeypress=" if (event.charCode === 13) game_check();">
                     </div>
                 </div>
-            </form>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p class="highlight" id="result_note"></p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <button class="btn btn-primary btn-lg btn-block" onclick="game_check();">Проверить</button>
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="container" id="game_setup" style="background-color: gainsboro;">
+            <h3 class="text-center">Настройка параметров игры</h3>
+
+            <div class="row">
+                <div class="col-md mb-3">
+                    <label>Тип игры</label>
+
+                    <select class="custom-select d-block w-100" id="game_type_select">
+                        <option value="1">Сложение</option>
+                        <option value="2">Вычитание</option>
+                    </select>
+                </div>
+
+                <div class="col-md mb-3">
+                    <label>Сложность игры</label>
+                    <select class="custom-select d-block w-100" id="game_level_select">
+                        <option value="1">1 класс</option>
+                        <option value="2" selected="selected">2 класс</option>
+                        <option value="3">3 класс</option>
+                    </select>
+                </div>
+                <div class="col-md mb-3">
+                    <label>Примеров</label>
+                    <select class="custom-select d-block w-100" id="try_quantity">
+                        <option value="1">10</option>
+                        <option value="2" selected="selected">20</option>
+                        <option value="3">30</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <button class="btn btn-primary btn-lg btn-block" onclick="start_new_game();">Новая игра</button>
+                </div>
+            </div>
         </div>
     </div>
 </main>
@@ -162,6 +162,17 @@
         }
 
         stars_img.src = "images/" + Math.round(stars) + "starfull.png";
+    }
+
+    function start_new_game() {
+        active_game = Number.parseInt(self.game_type_select.value);
+
+        games_level = Number.parseInt(self.game_level_select.value);
+
+        self.game_setup.style.display = "none";
+        self.game_form.style.display = "";
+
+        init_game_form();
     }
 
     function init_game_form() { // инициализация перед первым запуском или сменой игры
